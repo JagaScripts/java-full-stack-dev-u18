@@ -3,9 +3,6 @@
  */
 package modelo.gestiondb;
 
-import java.util.Hashtable;
-import java.util.List;
-
 /**
  * java-full-stack-dev-u18 - modelo.gestiondb - IObjetoAccesoDatos
  *
@@ -19,53 +16,47 @@ import java.util.List;
  */
 public interface IObjetoAccesoDatos {
 	
-	void usarDB(String bd);
+	void crearBaseDatos(String nombreBaseDatos);
+	
+	void crearTablaBaseDatos(String nombreBaseDatos, String scriptTabla, String tabla);
+	
+	void usarBaseDatos(String nombreBaseDatos);
+	
 
 	/**
 	 * Función para insertar objetos.
 	 *
 	 * @param elemento Elemento con los datos que se desean insertar
 	 */
-	void crearDB(String bd);
+	void crearRegistros(String nombreBaseDatos, String tabla, String registros);
+	
+
 
     /**
      * Función para actualizar un elemento.
      *
      * @param elemento Elemento con los datos que se desean actualizar.
      */
-   //void cearTabla(String db, String nombre, Hashtable<String, String> tablaPropiedades);
+	void actualizarRegistros(String nombreBaseDatos, String tabla, String atributo, String identificador);
 
-    //void crearRegistros();
+    
     
     /**
      * Función para eliminar un objeto.
      *
      * @param id String valor del filtro.
      */
-    //void eliminarRegistros(String id);
+    void eliminarRegistros(String nombreBaseDatos, String tabla, String identificador);
 
     /**
-     * Función para cargar todos los objeto.
+     * Función para leer registros de la base de datos.
      *
-     * @return List con los objetos cargados.
+     * @return List con los objetos cargados.*/
     
-    List<> listarTodos(); */
+    String leerTablaBaseDatos(String nombreBaseDatos, String tabla, int numeroAtributos); 
 
-    /**
-     * Función para buscar por dni.
-     *
-     * @param id String valor del filtro.
-     * @return T elemento con los datos asociados que cumplen el criterio.
-     
-    T obtener(String id);*/
+ 
 
-    /**
-     * Función que enlaza un ResultSet con un objeto.
-     *
-     * @param resultSet ResultSet a enlazar
-     * @return T elemento con los datos asociados.
   
-    T enlazar(ResultSet resultSet);   */
-    
 
 }
