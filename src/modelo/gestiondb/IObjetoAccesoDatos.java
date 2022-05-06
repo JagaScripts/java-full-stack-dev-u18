@@ -56,7 +56,7 @@ public interface IObjetoAccesoDatos {
     String leerTablaBaseDatos(String nombreBaseDatos, String tabla, int numeroAtributos); 
 
  
-
+    void eliminarBaseDatos(String nombreBaseDatos);
   
 
 }

@@ -184,6 +184,22 @@ public class ServicioBD implements IObjetoAccesoDatos{
 			e.printStackTrace();
 		}
 	}
+
+	@Override
+	public void eliminarBaseDatos(String nombreBaseDatos) {
+		try {
+			
+			String query = "DROP DATABASE IF EXISTS " + nombreBaseDatos ;
+			Statement statement = this.getConexion().createStatement();
+			statement.executeUpdate(query);
+			
+		}catch (Exception e) {
+			System.out.println("No se ha podido crear la Base de datos " + nombreBaseDatos);
+			e.printStackTrace();
+		}
+
+		
+	}
 	
 	
 }

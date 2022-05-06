@@ -15,26 +15,14 @@ import modelo.gestiondb.ServicioBD;
  * 
  * Fecha de creación 06/05/2022
  */
-public class Ejercicio1{
+public class Ejercicio3{
 
-	private final static String nombreBaseDatos = "tienda_informatica";
-	private final static String tablas[] = {"fabricantes", "articulos"};
-	private final static String atributo = "nombre = 'Asus'";
+	private final static String nombreBaseDatos = "almacenes";
+	private final static String tablas[] = {"almacenes", "cajas"};
+	private final static String atributo = "lugar = 'China'";
 	private final static String identificador = "codigo = 1";
-	private final static String registros[] = {"(1,'Sony'),(2,'Creative Labs'),(3,'Hewlett-Packard'),(4,'Iomega'),(5,'Fujitsu'),(6,'Winchester')","(1,'Hard drive',240,5),(2,'Memory',120,6),(3,'ZIP drive',150,4),(4,'Floppy disk',5,6),(5,'Monitor',240,1),(6,'DVD drive',180,2),(7,'CD drive',90,2),(8,'Printer',270,3),(9,'Toner cartridge',66,3),(10,'DVD burner',180,2)"};
-	private final static String scriptTabla[] = {"(\r\n"
-			+ "codigo INT NOT NULL,\r\n"
-			+ "nombre NVARCHAR (100) NOT NULL,\r\n"
-			+ "PRIMARY KEY (codigo)\r\n"
-			+ ")ENGINE=InnoDB;","(\r\n"
-					+ "codigo INT,\r\n"
-					+ "nombre NVARCHAR (100) NOT NULL,\r\n"
-					+ "precio INT NOT NULL,\r\n"
-					+ "fabricante INT NOT NULL,\r\n"
-					+ "PRIMARY KEY (codigo),\r\n"
-					+ "FOREIGN KEY (fabricante) REFERENCES fabricantes (codigo)\r\n"
-					+ "ON DELETE CASCADE ON UPDATE CASCADE\r\n"
-					+ ")ENGINE=InnoDB;"};
+	private final static String registros[] = {"(1,'Valencia',3),(2,'Barcelona',4),(3,'Bilbao',7),(4,'Los Angeles',2),(5,'San Francisco',8)","('0MN7','Rocks',180,3),('4H8P','Rocks',250,1),('4RT3','Scissors',190,4),('7G3H','Rocks',200,1),('8JN6','Papers',75,1),('8Y6U','Papers',50,3),('9J6F','Papers',175,2),('LL08','Rocks',140,4),('P0H6','Scissors',125,1),('P2T6','Scissors',150,2),('TU55','Papers',90,5)"};
+	private final static String scriptTabla[] = {"(codigo INT, lugar NVARCHAR(255) NOT NULL, capacidad INT NOT NULL, PRIMARY KEY (codigo))ENGINE=InnoDB;","(num_referencia NVARCHAR(5),contenido NVARCHAR(255) NOT NULL,valor INT NOT NULL,almacen INT NOT NULL, PRIMARY KEY (num_referencia),FOREIGN KEY (almacen) REFERENCES almacenes (codigo)ON DELETE CASCADE ON UPDATE CASCADE) ENGINE=InnoDB;"};
 	
 	private ServicioBD servicioBD;
 
@@ -42,7 +30,7 @@ public class Ejercicio1{
 	 * @param servicioBD
 	 * @param conexion
 	 */
-	public Ejercicio1(ServicioBD servicioBD) {
+	public Ejercicio3(ServicioBD servicioBD) {
 		this.servicioBD = servicioBD;
 		this.servicioBD.crearBaseDatos(nombreBaseDatos);
 		for (int i = 0; i < tablas.length; i++) {
@@ -75,5 +63,5 @@ public class Ejercicio1{
 		
 		this.servicioBD.eliminarBaseDatos(nombreBaseDatos);
 	}
-
+	
 }
