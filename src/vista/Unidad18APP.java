@@ -7,6 +7,7 @@ import java.sql.Connection;
 import controlador.Ejercicio1;
 import controlador.Ejercicio2;
 import controlador.Ejercicio3;
+import controlador.Ejercicio4;
 import modelo.gestiondb.GestionSql;
 import modelo.gestiondb.ServicioBD;
 
@@ -74,6 +75,21 @@ public class Unidad18APP {
 		System.out.println("Imprimimos la tabla registro eliminado");
 		System.out.println(textoMuestra);
 		ejercicio3.eliminarBaseDatos();
+		
+		System.out.println("Ejercicio3 Tienda informatica");
+		Ejercicio4 ejercicio4 = new Ejercicio4(servicioDB);
+		textoMuestra = ejercicio4.leerBaseDeDatos();
+		System.out.println("Imprimimos la tabla");
+		System.out.println(textoMuestra);
+		ejercicio4.actualizarRegistros();
+		textoMuestra = ejercicio4.leerBaseDeDatos();
+		System.out.println("Imprimimos la tabla registro actualizado");
+		System.out.println(textoMuestra);
+		ejercicio4.eliminarRegistros();
+		textoMuestra = ejercicio4.leerBaseDeDatos();
+		System.out.println("Imprimimos la tabla registro eliminado");
+		System.out.println(textoMuestra);
+		ejercicio4.eliminarBaseDatos();
 		
 		if (GestionSql.cerrarConexion(conexion)) {
 			System.out.println("Se cierra la aplicación");

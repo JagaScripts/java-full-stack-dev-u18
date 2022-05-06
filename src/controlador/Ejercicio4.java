@@ -17,12 +17,12 @@ import modelo.gestiondb.ServicioBD;
  */
 public class Ejercicio4{
 
-	private final static String nombreBaseDatos = "empleados";
-	private final static String tablas[] = {"departamentos", "empleados"};
-	private final static String atributo = "nombre = 'Altos ejecutivos'";
+	private final static String nombreBaseDatos = "peliculas_y_salas";
+	private final static String tablas[] = {"peliculas", "salas"};
+	private final static String atributo = "nombre = 'Sala 1'";
 	private final static String identificador = "codigo = 1";
-	private final static String registros[] = {"(14,'IT',65000),(37,'Accounting',15000),(59,'Human Resources',240000),(77,'Research',55000)","(123234877,'Michael','Rogers',14),(152934485,'Anand','Manikutty',14),(222364883,'Carol','Smith',37),(326587417,'Joe','Stevens',37),(332154719,'Mary-Anne','Foster',14),(332569843,'George','O\\'Donnell',77),(546523478,'John','Doe',59),(631231482,'David','Smith',77),(654873219,'Zacary','Efron',59),(745685214,'Eric','Goldsmith',59),(845657233,'Luis','López',14),(845657245,'Elizabeth','Doe',14),(845657246,'Kumar','Swamy',14),(845657266,'Jose','Pérez',77)"};
-	private final static String scriptTabla[] = {"(codigo INT, nombre NVARCHAR (100) NOT NULL, presupuesto INT NOT NULL, PRIMARY KEY (codigo))ENGINE=InnoDB;","(DNI NVARCHAR(9), nombre NVARCHAR (100) NOT NULL, apellidos NVARCHAR (255) NOT NULL, departamento INT NOT NULL, PRIMARY KEY (DNI), FOREIGN KEY (departamento) REFERENCES departamentos (codigo) ON DELETE RESTRICT ON UPDATE CASCADE)ENGINE=InnoDB;"};
+	private final static String registros[] = {"(1,'Citizen Kane','PG'),(2,'Singin\\' in the Rain','G'),(3,'The Wizard of Oz','G'),(4,'The Quiet Man',NULL),(5,'North by Northwest',NULL),(6,'The Last Tango in Paris','NC-17'),(7,'Some Like it Hot','PG-13'),(8,'A Night at the Opera',NULL),(9,'Citizen King','G');","(1,'Odeon',5),(2,'Imperial',1),(3,'Majestic',NULL),(4,'Royale',6),(5,'Paraiso',3),(6,'Nickelodeon',NULL);"};
+	private final static String scriptTabla[] = {"(codigo INT, nombre NVARCHAR(100) NOT NULL,calificacionedad VARCHAR(30) DEFAULT NULL,PRIMARY KEY (codigo))ENGINE=InnoDB;","(codigo INT,nombre NVARCHAR(100) NOT NULL,pelicula INT DEFAULT NULL,PRIMARY KEY (codigo),FOREIGN KEY (pelicula) REFERENCES peliculas (codigo)ON DELETE SET NULL ON UPDATE CASCADE)ENGINE=InnoDB;"};
 	
 	private ServicioBD servicioBD;
 
