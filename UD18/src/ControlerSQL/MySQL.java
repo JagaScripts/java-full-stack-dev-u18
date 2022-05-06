@@ -1,0 +1,100 @@
+package ControlerSQL;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class MySQL {
+	private static Connection conexion;
+	
+	public MySQL() {
+		
+	}
+	
+	public static void leerDatosQuery(String nombreDB,String querySelect,int numAtributos) {
+		try {
+			// Database use statement
+
+		//	String queryDb = "USE " + nombreDB + ";";
+
+			Statement stdb = conexion.createStatement();
+		//	stdb.executeQuery(queryDb);
+			
+			//PreparedStatement ps = conexion.prepareStatement(querySelect);
+			ResultSet resultado = stdb.executeQuery(querySelect);
+			
+			//Por cada fila de datos
+			while (resultado.next()) {
+				//Miramos sus atributos --> numAtributos es el numero de atributos que tiene
+				for (int i = 1; i <= numAtributos; i++) {
+					System.out.print(resultado.getString(i) + " ");
+				}
+				System.out.println("");//Salto de linea
+			}
+			
+
+
+		} catch (Exception e) {
+			System.out.println("Error al hacer el Select");
+		}
+	}
+
+	public static void insertarQuery(String nombreDB, String queryCreate) {
+
+		try {
+			// Database use statement
+
+			String queryDb = "USE " + nombreDB + ";";
+
+			Statement stdb = conexion.createStatement();
+			stdb.executeUpdate(queryDb);
+
+			Statement st = conexion.createStatement();
+			st.executeUpdate(queryCreate);
+			
+			System.out.println("Query completado!");
+
+		} catch (Exception e) {
+			System.out.println("Error en el Query");
+			System.out.println(e);
+		}
+
+	}
+
+	public static void hacerConexionBD() {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			conexion = DriverManager.getConnection("jdbc:mysql://192.168.1.40:3306?useTimezone=true&serverTimezone=UTC",
+					"remote", "Reus_2022");
+			System.out.println("Server Connected");
+		} catch (SQLException | ClassNotFoundException ex) {
+			System.out.println("No se ha podido conectar con mi base de datos");
+			System.out.println(ex);
+		}
+	}
+
+	public static void crearBD(String nombreDB) {
+		try {
+			String query = "CREATE DATABASE " + nombreDB;
+			Statement st = conexion.createStatement();
+			st.executeUpdate(query);
+			System.out.println("Base de datos " + nombreDB + " creada correctamente");
+
+		} catch (Exception e) {
+			System.out.println("Error al crear la base de datos" + e);
+		}
+	}
+
+	public static void desconectarBD() {
+		try {
+			conexion.close();
+			System.out.println("Saliendo de la BD");
+		} catch (Exception e) {
+			System.out.println("Error al desconectar de la BD " + e);
+
+		}
+	}
+
+}

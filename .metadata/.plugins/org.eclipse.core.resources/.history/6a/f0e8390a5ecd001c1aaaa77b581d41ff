@@ -1,0 +1,49 @@
+package Ex01;
+
+import ControlerSQL.MySQL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class ex01App {
+
+	private static Connection conexion;
+
+	public static void main(String[] args) {
+
+		MySQL objetoSQL = new MySQL();
+
+		// Hacemos la conexion
+		objetoSQL.hacerConexionBD();
+
+	/*	// Creamos la base de datos
+		objetoSQL.crearBD("informatica");
+
+		// Creamos la tabla fabricantes
+		String queryCreate = "CREATE TABLE fabricantes (" + "ID INT PRIMARY KEY, nombre VARCHAR(255) NOT NULL);";
+		objetoSQL.insertarQuery("informatica", queryCreate);
+
+		// Insertamos datos en la tabla fabricantes
+		String queryInsert = "INSERT INTO fabricantes VALUES (1,'Mine'), (2,'Craft'), (3,'A'), (4,'B');";
+		objetoSQL.insertarQuery("informatica", queryInsert);
+
+		// Creamos la tabla Articulos
+		queryCreate = "CREATE TABLE articulos (" + "ID INT PRIMARY KEY, nombre VARCHAR(255) NOT NULL," + "precio INT,"
+				+ "fabricanteId INT,"
+				+ "FOREIGN KEY (fabricanteId) REFERENCES fabricantes(ID) ON DELETE CASCADE ON UPDATE CASCADE);";
+		objetoSQL.insertarQuery("informatica", queryCreate);
+
+		String querySelect = "SELECT * FROM fabricantes;";
+		objetoSQL.leerDatosQuery("informatica", querySelect, 2);*/
+		
+		String queryUpdate = "UPDATE fabricantes SET WHERE ID ='1' "
+
+		// Desconectamos de la BD
+		objetoSQL.desconectarBD();
+
+	}
+
+}

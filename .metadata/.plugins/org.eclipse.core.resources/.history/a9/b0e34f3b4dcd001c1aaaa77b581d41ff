@@ -1,0 +1,91 @@
+package Ex01;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class ex01App {
+	
+	private static Connection conexion;
+
+
+	public static void main(String[] args) {
+		
+		//Hacemos la conexion
+		hacerConexionBD();
+		
+		//Creamos la base de datos
+		crearBD("Clase");
+		
+		//Creamos la tabla
+		crearTablaBD("Clase");
+		
+		//Insertamos datos en la tabla
+
+	}
+	
+	private static void crearTablaBD(String nombreDB) {
+
+		String queryCreate = "CREATE TABLE articulos ("
+				+ "ID INT AUTO_INCREMENT PRIMARY KEY, nombre VARCHAR(100) NOT NULL,"
+				+ "precio INT,"
+				+ "fabricante INT,"
+				+ "FOREIGN KEY (fabricante) REFERENCES fabricantes(ID) "
+				+ "ON DELETE CASCADE ON UPDATE CASCADE);";
+		
+		try {
+			// Database use statement
+
+			String queryDb = "USE " + nombreDB + ";";
+
+			Statement stdb = conexion.createStatement();
+			stdb.executeUpdate(queryDb);
+
+
+			Statement st = conexion.createStatement();
+
+			st.executeUpdate(queryCreate);
+			System.out.println("Query suceesfully!");
+
+		} catch (Exception e) {
+			System.out.println("Inserting row/s fail");
+			System.out.println(e);
+		}
+		
+	}
+
+	public static void hacerConexionBD() {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			conexion = DriverManager.getConnection("jdbc:mysql://192.168.1.40:3306?useTimezone=true&serverTimezone=UTC","remote","Reus_2022");
+			System.out.println("Server Connected");
+		} catch (SQLException | ClassNotFoundException ex) {
+			System.out.println("No se ha podido conectar con mi base de datos");
+			System.out.println(ex);
+		}
+	}
+	
+	public static void crearBD(String nombreDB) {
+		try {
+			String query = "CREATE DATABASE " + nombreDB;
+			Statement st = conexion.createStatement();
+			st.executeUpdate(query);
+			System.out.println("Base de datos "+ nombreDB + " creada correctamente");
+
+		} catch (Exception e) {
+			System.out.println("Error al crear la base de datos" + e);
+		}
+	}
+	
+	public static void desconectarBD() {
+		try {
+			conexion.close();
+			System.out.println("Saliendo de la BD");
+		} catch (Exception e) {
+			System.out.println("Error al desconectar de la BD " + e);
+
+		}
+	}
+
+}

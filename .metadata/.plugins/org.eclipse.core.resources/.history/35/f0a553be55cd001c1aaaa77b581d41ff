@@ -1,0 +1,21 @@
+package Ex01;
+
+public class Todo {
+
+	String EJ1;
+	String EJ2;
+	String EJ3;
+	String EJ4;
+	
+	
+	public Todo() {
+		super();
+		EJ1 = "CREATE";
+		EJ2 = "CREATE";
+		EJ3 = "create";
+		EJ4 = "create";
+	}
+	
+	
+	
+}

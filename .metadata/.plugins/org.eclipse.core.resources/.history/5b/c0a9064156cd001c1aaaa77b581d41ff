@@ -1,0 +1,36 @@
+package Ex01;
+
+public class Todo {
+
+	private String EJ1;
+	private String EJ2;
+	private String EJ3;
+	private String EJ4;
+	private String EJ5;
+	private String EJ6;
+	private String EJ7;
+
+
+	
+	public Todo() {
+
+	}
+	
+	public String getEJ1() {
+		
+		return EJ1;
+	}
+
+	public String getEJ2() {
+		return EJ2;
+	}
+
+	public void setEJ2(String eJ2) {
+		EJ2 = eJ2;
+	}
+
+	public void setEJ1(String eJ1) {
+		EJ1 = eJ1;
+	}
+	
+}

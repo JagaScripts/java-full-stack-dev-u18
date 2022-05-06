@@ -1,0 +1,10 @@
+package Ex01;
+
+public class Todo {
+
+	String EJ1 = "";
+	String EJ2 = "";
+	String EJ3 = "";
+	String EJ4 = "";
+	
+}
