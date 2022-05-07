@@ -59,7 +59,7 @@ public class ServicioBD implements IObjetoAccesoDatos{
 			String query = "CREATE DATABASE IF NOT EXISTS " + nombreBaseDatos ;
 			Statement statement = this.getConexion().createStatement();
 			statement.executeUpdate(query);
-			
+			System.out.println("Se ha creado la base de datos " + nombreBaseDatos);
 		}catch (Exception e) {
 			System.out.println("No se ha podido crear la Base de datos " + nombreBaseDatos);
 			e.printStackTrace();
@@ -192,9 +192,9 @@ public class ServicioBD implements IObjetoAccesoDatos{
 			String query = "DROP DATABASE IF EXISTS " + nombreBaseDatos ;
 			Statement statement = this.getConexion().createStatement();
 			statement.executeUpdate(query);
-			
+			System.out.println("Se ha borrado la base de datos " + nombreBaseDatos);
 		}catch (Exception e) {
-			System.out.println("No se ha podido crear la Base de datos " + nombreBaseDatos);
+			System.out.println("No se ha podido borrar la Base de datos " + nombreBaseDatos);
 			e.printStackTrace();
 		}
 

@@ -3,9 +3,7 @@
  */
 package controlador;
 
-import java.sql.Connection;
 
-import modelo.gestiondb.GestionSql;
 import modelo.gestiondb.ServicioBD;
 
 /**
@@ -23,7 +21,7 @@ public class Ejercicio3{
 	private final static String identificador = "codigo = 1";
 	private final static String registros[] = {"(1,'Valencia',3),(2,'Barcelona',4),(3,'Bilbao',7),(4,'Los Angeles',2),(5,'San Francisco',8)","('0MN7','Rocks',180,3),('4H8P','Rocks',250,1),('4RT3','Scissors',190,4),('7G3H','Rocks',200,1),('8JN6','Papers',75,1),('8Y6U','Papers',50,3),('9J6F','Papers',175,2),('LL08','Rocks',140,4),('P0H6','Scissors',125,1),('P2T6','Scissors',150,2),('TU55','Papers',90,5)"};
 	private final static String scriptTabla[] = {"(codigo INT, lugar NVARCHAR(255) NOT NULL, capacidad INT NOT NULL, PRIMARY KEY (codigo))ENGINE=InnoDB;","(num_referencia NVARCHAR(5),contenido NVARCHAR(255) NOT NULL,valor INT NOT NULL,almacen INT NOT NULL, PRIMARY KEY (num_referencia),FOREIGN KEY (almacen) REFERENCES almacenes (codigo)ON DELETE CASCADE ON UPDATE CASCADE) ENGINE=InnoDB;"};
-	
+	private final static int camposTabla1 = 3;
 	private ServicioBD servicioBD;
 
 	/**
@@ -32,6 +30,7 @@ public class Ejercicio3{
 	 */
 	public Ejercicio3(ServicioBD servicioBD) {
 		this.servicioBD = servicioBD;
+		this.eliminarBaseDatos();
 		this.servicioBD.crearBaseDatos(nombreBaseDatos);
 		for (int i = 0; i < tablas.length; i++) {
 			this.servicioBD.crearTablaBaseDatos(nombreBaseDatos, scriptTabla[i], tablas[i]);
@@ -43,7 +42,7 @@ public class Ejercicio3{
 	
 	public String leerBaseDeDatos() {
 		
-		return this.servicioBD.leerTablaBaseDatos(nombreBaseDatos, tablas[0], tablas.length);
+		return this.servicioBD.leerTablaBaseDatos(nombreBaseDatos, tablas[0], camposTabla1);
 		
 	}
 	

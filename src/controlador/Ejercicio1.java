@@ -3,9 +3,6 @@
  */
 package controlador;
 
-import java.sql.Connection;
-
-import modelo.gestiondb.GestionSql;
 import modelo.gestiondb.ServicioBD;
 
 /**
@@ -35,7 +32,7 @@ public class Ejercicio1{
 					+ "FOREIGN KEY (fabricante) REFERENCES fabricantes (codigo)\r\n"
 					+ "ON DELETE CASCADE ON UPDATE CASCADE\r\n"
 					+ ")ENGINE=InnoDB;"};
-	
+	private final static int camposTabla1 = 2;
 	private ServicioBD servicioBD;
 
 	/**
@@ -44,6 +41,7 @@ public class Ejercicio1{
 	 */
 	public Ejercicio1(ServicioBD servicioBD) {
 		this.servicioBD = servicioBD;
+		this.eliminarBaseDatos();
 		this.servicioBD.crearBaseDatos(nombreBaseDatos);
 		for (int i = 0; i < tablas.length; i++) {
 			this.servicioBD.crearTablaBaseDatos(nombreBaseDatos, scriptTabla[i], tablas[i]);
@@ -55,7 +53,7 @@ public class Ejercicio1{
 	
 	public String leerBaseDeDatos() {
 		
-		return this.servicioBD.leerTablaBaseDatos(nombreBaseDatos, tablas[0], tablas.length);
+		return this.servicioBD.leerTablaBaseDatos(nombreBaseDatos, tablas[0], camposTabla1);
 		
 	}
 	
